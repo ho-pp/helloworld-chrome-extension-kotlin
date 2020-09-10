@@ -96,7 +96,7 @@ fun saveBackgroundColor(url: String, color: String) {
 // to a document's origin. Also, using browser.storage.sync instead of
 // browser.storage.local allows the extension data to be synced across multiple
 // user devices.
-fun main(args: Array<String>) {
+fun main() {
     document.onContentLoadedEventAsync {
         val url = getCurrentTabUrlAsync().await()
         val dropdown = document.getElementById("dropdown") as HTMLSelectElement

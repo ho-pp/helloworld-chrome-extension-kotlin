@@ -1,5 +1,8 @@
+val kotlinVersion: String by System.getProperties()
+val kotlinCoroutinesVersion: String by System.getProperties()
+
 buildscript {
-    val kotlinVersion: String by project
+    val kotlinVersion: String by System.getProperties()
     repositories {
         mavenCentral()
         maven("https://dl.bintray.com/kotlin/kotlin-eap")
@@ -10,7 +13,7 @@ buildscript {
 }
 
 plugins {
-    val kotlinVersion = "1.3.50"
+    val kotlinVersion: String by System.getProperties()
     kotlin("multiplatform") version kotlinVersion
     id("kotlin-dce-js") version kotlinVersion
 }
@@ -26,7 +29,7 @@ kotlin {
     js {
         browser {
             webpackTask {
-                archiveFileName = resultFileName
+//                archiveFileName = resultFileName
                 sourceMaps = false
                 report = true
             }
@@ -35,8 +38,8 @@ kotlin {
             val jsMain by getting {
                 dependencies {
                     implementation(kotlin("stdlib-js"))
-                    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:1.3.0")
-                    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0")
+                    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$kotlinCoroutinesVersion")
+                    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion")
                     runtimeOnly(npm("webextension-polyfill", "0.4.0"))
                 }
             }
